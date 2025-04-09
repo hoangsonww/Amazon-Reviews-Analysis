@@ -22,6 +22,8 @@ _LING-460: Textual Analysis with R at UNC-Chapel Hill, Spring 2025._
 
 Consumer reviews provide rich insights into the evaluative language that people use to express their satisfaction or dissatisfaction. The way consumers articulate their experiences can reveal underlying linguistic patterns, where factors such as lexical diversity and emotional tone contribute to the expression of opinions. Understanding these patterns has implications for marketing, consumer research, and sentiment analysis in natural language processing. Our project addresses the broader question of whether the language used in negative reviews differs fundamentally from that used in positive reviews.
 
+> Dataset: [https://drive.google.com/file/d/1FEvJRnELiliuDQ3RnfnVwjkhLh1yXdK0/view?usp=share_link](https://drive.google.com/file/d/1FEvJRnELiliuDQ3RnfnVwjkhLh1yXdK0/view?usp=share_link)
+
 ## Research Question
 
 **Do negative reviews exhibit lower lexical diversity and higher negative sentiment intensity than positive reviews?**
