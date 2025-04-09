@@ -239,7 +239,7 @@ ggplot(reviews_data, aes(x = Sentiment, y = NegativeIntensity, fill = Sentiment)
   geom_boxplot() +
   labs(title = "Negative Sentiment Intensity by Sentiment",
        x = "Sentiment (Negative vs. Positive)",
-       y = "Negative Sentiment Intensity (Negative Words / Total Words)") +
+       y = "Negative Sentiment Intensity") +
   theme_minimal()
 # Expected visualization output:
 #   - A boxplot showing that Negative reviews have a much higher median negative intensity than Positive reviews. Also
