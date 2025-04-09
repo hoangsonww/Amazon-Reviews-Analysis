@@ -144,12 +144,12 @@ Further research could explore additional linguistic features (e.g., syntactic c
 The report includes the following key visualizations:
 - **Figure 1:** Boxplot of Type-Token Ratio (TTR) by review sentiment.
 <p align="center">
-   <img src="img/boxplot-amazon-reviews-analysis" alt="Boxplot for Type-Token Ratio (TTR) by review sentiment" width="100%" style="border-radius: 8px" />
+   <img src="img/boxplot-amazon-reviews-analysis.png" alt="Boxplot for Type-Token Ratio (TTR) by review sentiment" width="100%" style="border-radius: 8px" />
 </p>
 
 - **Figure 2:** Boxplot of Negative Sentiment Intensity by review sentiment.
 <p align="center">
-   <img src="img/boxplot2-amazon-reviews-analysis" alt="Boxplot for Negative Sentiment Intensity by review sentiment" width="100%" style="border-radius: 8px" />
+   <img src="img/boxplot2-amazon-reviews-analysis.png" alt="Boxplot for Negative Sentiment Intensity by review sentiment" width="100%" style="border-radius: 8px" />
 </p>
 
 ---
