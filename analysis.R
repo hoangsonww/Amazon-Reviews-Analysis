@@ -249,7 +249,7 @@ ggplot(reviews_data, aes(x = Sentiment, y = NegativeIntensity, fill = Sentiment)
 
 # -------------------------------#
 # 8. STATISTICAL TESTS
-#    Author: Ayushi Mazumder
+#    Author: David Nguyen
 # -------------------------------#
 # Perform independent-sample t-tests to test if the differences in TTR and Negative Sentiment 
 # Intensity between Negative and Positive reviews are statistically significant
@@ -304,7 +304,7 @@ summary(reg_model)
 
 # -------------------------------#
 # 10. CONCLUSIONS
-#     Author: Ryan Kuhn
+#     Author: David Nguyen
 # -------------------------------#
 # After performing several statistical tests and visualizations, our group conclude that:
 #   - The t-tests confirmed statistically significant differences between Negative and Positive reviews:
