@@ -15,9 +15,10 @@
 
 # -------------------------------#
 # 1. INSTALL & LOAD PACKAGES
+#    Author: David Nguyen     
 # -------------------------------#
 # Define a vector of required packages for data manipulation, visualization, 
-# text mining, sentiment analysis, and date handling.
+# text mining, sentiment analysis, and date handling
 required_packages <- c("tidyverse", "tidytext", "sentimentr", "lubridate")
 
 # Check if each required package is installed. If not, install it with dependencies
@@ -39,6 +40,7 @@ library(lubridate)
 
 # -------------------------------#
 # 2. LOAD DATA
+#    Author: David Nguyen
 # -------------------------------#
 # IMPORTANT: Ensure that "Reviews.csv" is placed in the same directory as this script
 # The dataset can be downloaded from:
@@ -58,6 +60,7 @@ print(head(reviews_data))
 
 # -------------------------------#
 # 3. PREPROCESSING
+#    Author: David Nguyen
 # -------------------------------#
 # Preprocess the dataset by:
 #   - Converting Unix timestamp (Time) to a human-readable date
@@ -82,6 +85,7 @@ reviews_data <- reviews_data %>%
 
 # -------------------------------#
 # 4. LEXICAL DIVERSITY (TTR)
+#    Author: Ayushi Mazumder
 # -------------------------------#
 # Define a function to calculate the Type-Token Ratio (TTR), which is a measure of lexical diversity
 # TTR = (# of unique tokens) / (total number of tokens)
@@ -127,6 +131,7 @@ print(head(reviews_data))
 
 # -----------------------------------#
 # 5. SENTIMENT INTENSITY (NEGATIVE)
+#    Author: Charles Martin
 # -----------------------------------#
 # We measure negative sentiment intensity, defined as the proportion of negative words in the review
 #
@@ -182,6 +187,7 @@ print(head(reviews_data))
 
 # -------------------------------#
 # 6. SUMMARY STATISTICS
+#    Author: Ryan Kuhn
 # -------------------------------#
 # Compute descriptive statistics for TTR and Negative Sentiment Intensity,
 # grouped by review sentiment (Negative vs. Positive). These stats include:
@@ -213,8 +219,9 @@ print(summary_stats)
 
 # -------------------------------#
 # 7. VISUALIZATIONS
+#    Author: Charles Martin
 # -------------------------------#
-# Create boxplots to compare the distribution of TTR and Negative Sentiment Intensity between review sentiments.
+# Create boxplots to compare the distribution of TTR and Negative Sentiment Intensity between review sentiments
 
 # 1. Boxplot for Type-Token Ratio (TTR) by review sentiment.
 ggplot(reviews_data, aes(x = Sentiment, y = TTR, fill = Sentiment)) +
@@ -242,6 +249,7 @@ ggplot(reviews_data, aes(x = Sentiment, y = NegativeIntensity, fill = Sentiment)
 
 # -------------------------------#
 # 8. STATISTICAL TESTS
+#    Author: Ayushi Mazumder
 # -------------------------------#
 # Perform independent-sample t-tests to test if the differences in TTR and Negative Sentiment 
 # Intensity between Negative and Positive reviews are statistically significant
@@ -251,25 +259,26 @@ cat("T-Test for Type-Token Ratio (TTR):\n")
 ttr_test <- t.test(TTR ~ Sentiment, data = reviews_data)
 print(ttr_test)
 # Expected T-test output:
-#   - t = -52.16, df ~ 113371, p-value < 2.2e-16.
-#   - 95% confidence interval: approximately [-0.02093, -0.01941].
+#   - t = -52.16, df ~ 113371, p-value < 2.2e-16
+#   - 95% confidence interval: approximately [-0.02093, -0.01941]
 # Interpretation:
 #   - A highly significant difference in TTR exists between Negative and Positive reviews,
 #     with Negative reviews having a lower TTR (indicating lower lexical diversity)
 
-# T-test for Negative Sentiment Intensity.
+# T-test for Negative Sentiment Intensity
 cat("T-Test for Negative Sentiment Intensity:\n")
 neg_intensity_test <- t.test(NegativeIntensity ~ Sentiment, data = reviews_data)
 print(neg_intensity_test)
 # Expected T-test output:
-#   - t = 174.36, df ~ 97254, p-value < 2.2e-16.
-#   - 95% confidence interval: approximately [0.01861, 0.01903].
+#   - t = 174.36, df ~ 97254, p-value < 2.2e-16
+#   - 95% confidence interval: approximately [0.01861, 0.01903]
 # Interpretation:
 #   - There is a highly significant difference in negative sentiment intensity,
 #     with Negative reviews having a higher intensity (i.e., a larger proportion of negative words)
 
 # -------------------------------#
 # 9. REGRESSION ANALYSIS
+#    Author: David Nguyen
 # -------------------------------#
 # For the regression analysis, create a binary variable representing review sentiment:
 #   - 1 for Negative reviews
@@ -295,6 +304,7 @@ summary(reg_model)
 
 # -------------------------------#
 # 10. CONCLUSIONS
+#     Author: Ryan Kuhn
 # -------------------------------#
 # After performing several statistical tests and visualizations, our group conclude that:
 #   - The t-tests confirmed statistically significant differences between Negative and Positive reviews:
