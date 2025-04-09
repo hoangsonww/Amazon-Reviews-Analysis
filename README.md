@@ -2,6 +2,24 @@
 
 _LING-460: Textual Analysis with R at UNC-Chapel Hill, Spring 2025._
 
+## Table of Contents
+
+1. [Title](#title)  
+2. [Authors](#authors)  
+3. [Motivation](#motivation)  
+4. [Research Question](#research-question)  
+5. [Research Hypothesis](#research-hypothesis)  
+6. [Prediction](#prediction)  
+7. [Procedure](#procedure)  
+8. [Analysis Results](#analysis-results)  
+   - [Descriptive Statistics](#descriptive-statistics)  
+   - [Statistical Tests](#statistical-tests)  
+   - [Regression Analysis](#regression-analysis)  
+9. [Data Analysis](#data-analysis)  
+10. [Conclusions](#10-conclusions)  
+11. [References](#references)  
+12. [Visualizations](#visualizations)
+
 ## Motivation
 
 Consumer reviews provide rich insights into the evaluative language that people use to express their satisfaction or dissatisfaction. The way consumers articulate their experiences can reveal underlying linguistic patterns, where factors such as lexical diversity and emotional tone contribute to the expression of opinions. Understanding these patterns has implications for marketing, consumer research, and sentiment analysis in natural language processing. Our project addresses the broader question of whether the language used in negative reviews differs fundamentally from that used in positive reviews.
