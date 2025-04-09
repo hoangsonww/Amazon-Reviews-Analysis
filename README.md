@@ -4,21 +4,19 @@ _LING-460: Textual Analysis with R at UNC-Chapel Hill, Spring 2025._
 
 ## Table of Contents
 
-1. [Title](#title)  
-2. [Authors](#authors)  
-3. [Motivation](#motivation)  
-4. [Research Question](#research-question)  
-5. [Research Hypothesis](#research-hypothesis)  
-6. [Prediction](#prediction)  
-7. [Procedure](#procedure)  
-8. [Analysis Results](#analysis-results)  
+1. [Motivation](#motivation)  
+2. [Research Question](#research-question)  
+3. [Research Hypothesis](#research-hypothesis)  
+4. [Prediction](#prediction)  
+5. [Procedure](#procedure)  
+6. [Analysis Results](#analysis-results)  
    - [Descriptive Statistics](#descriptive-statistics)  
    - [Statistical Tests](#statistical-tests)  
    - [Regression Analysis](#regression-analysis)  
-9. [Data Analysis](#data-analysis)  
-10. [Conclusions](#10-conclusions)  
-11. [References](#references)  
-12. [Visualizations](#visualizations)
+7. [Data Analysis](#data-analysis)
+8. [Visualizations](#visualizations)
+9. [Conclusions](#conclusions)  
+10. [References](#references)  
 
 ## Motivation
 
@@ -116,7 +114,20 @@ Our analysis included:
 - **Regression Modeling:**  
   The regression analysis further supported these findings. The significant negative coefficient for the sentiment binary variable confirmed that negative sentiment is associated with reduced lexical diversity. Although the contribution of negative intensity to TTR was marginally significant, its inclusion in the model offers additional nuance to the relationship between review language and sentiment.
 
-## 10. Conclusions
+## Visualizations
+
+The report includes the following key visualizations:
+- **Figure 1:** Boxplot of Type-Token Ratio (TTR) by review sentiment.
+<p align="center">
+   <img src="img/boxplot-amazon-reviews-analysis.png" alt="Boxplot for Type-Token Ratio (TTR) by review sentiment" width="100%" style="border-radius: 8px" />
+</p>
+
+- **Figure 2:** Boxplot of Negative Sentiment Intensity by review sentiment.
+<p align="center">
+   <img src="img/boxplot2-amazon-reviews-analysis.png" alt="Boxplot for Negative Sentiment Intensity by review sentiment" width="100%" style="border-radius: 8px" />
+</p>
+
+## Conclusions
 
 Based on our analyses, we conclude the following:
 - **Lexical Diversity:**  
@@ -138,18 +149,5 @@ Further research could explore additional linguistic features (e.g., syntactic c
 
 - McAuley, J., & Leskovec, J. (2013). *From Amateurs to Connoisseurs: Modeling the Evolution of User Expertise through Online Reviews*. [DOI: 10.48550/arXiv.1303.4402](https://doi.org/10.48550/arXiv.1303.4402)
 - Stanford Network Analysis Project Team (2017). *Amazon Fine Food Reviews*. Kaggle. [Link to dataset](https://www.kaggle.com/datasets/snap/amazon-fine-food-reviews)
-
-## Visualizations
-
-The report includes the following key visualizations:
-- **Figure 1:** Boxplot of Type-Token Ratio (TTR) by review sentiment.
-<p align="center">
-   <img src="img/boxplot-amazon-reviews-analysis.png" alt="Boxplot for Type-Token Ratio (TTR) by review sentiment" width="100%" style="border-radius: 8px" />
-</p>
-
-- **Figure 2:** Boxplot of Negative Sentiment Intensity by review sentiment.
-<p align="center">
-   <img src="img/boxplot2-amazon-reviews-analysis.png" alt="Boxplot for Negative Sentiment Intensity by review sentiment" width="100%" style="border-radius: 8px" />
-</p>
 
 ---
