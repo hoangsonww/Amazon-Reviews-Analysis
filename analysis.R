@@ -44,7 +44,7 @@ library(lubridate)
 # -------------------------------#
 # IMPORTANT: Ensure that "Reviews.csv" is placed in the same directory as this script
 # The dataset can be downloaded from:
-# https://drive.google.com/file/d/1xay-CkkRhbjrAJqQHKCkeXzoMucQTlSB/view?usp=sharing
+# https://www.kaggle.com/datasets/snap/amazon-fine-food-reviews (download the Reviews.csv file)
 #
 # read_csv (from the readr package within tidyverse) is used to import the dataset, 
 # instead of base R's read.csv for better performance and handling of such a large
