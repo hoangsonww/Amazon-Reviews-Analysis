@@ -2,16 +2,15 @@
 # Local R Script for Analysis of Amazon Fine Food Reviews
 # Title: Lexical Diversity and Sentiment Intensity in Amazon Fine Food Reviews
 # Authors: David Nguyen, Ayushi Mazumder, Charles Martin, Ryan Kuhn
-# Course: LING-460 Textual Analysis with R at UNC-Chapel Hill
 #
 # This script investigates whether negative reviews (1-2 stars) on the Amazon Fine Food 
 # Reviews dataset exhibit:
 #   1. Lower lexical diversity (measured by the type-token ratio, TTR)
 #   2. Higher negative sentiment intensity (proportion of negative words)
-# compared to positive reviews (4-5 stars).
+# compared to positive reviews (those with 4-5 stars).
 #
 # The analysis involves data loading, preprocessing, computation of linguistic metrics,
-# visualization, and statistical analysis including t-tests and regression modeling.
+# visualization, and statistical analysis including t-tests and regression modeling
 #########################################################################################
 
 # -------------------------------#
@@ -34,8 +33,6 @@ for (pkg in required_packages) {
 library(tidyverse)
 # For text tokenization and sentiment lexicons
 library(tidytext) 
-# For alternative sentiment analysis methods if needed
-library(sentimentr)
 # For handling date and time conversions
 library(lubridate)
 
@@ -45,7 +42,7 @@ library(lubridate)
 # -------------------------------#
 # IMPORTANT: Ensure that "Reviews.csv" is placed in the same directory as this script
 # The dataset can be downloaded from:
-# https://www.kaggle.com/datasets/snap/amazon-fine-food-reviews (Download the "Reviews.csv" file)
+#  https://www.kaggle.com/datasets/snap/amazon-fine-food-reviews (Download the "Reviews.csv" file)
 #
 # read_csv (from the readr package within tidyverse) is used to import the dataset, 
 # instead of base R's read.csv for better performance and handling of such a large
