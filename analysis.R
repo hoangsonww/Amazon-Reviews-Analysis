@@ -10,7 +10,7 @@
 # compared to positive reviews (those with 4-5 stars).
 #
 # The analysis involves data loading, preprocessing, computation of linguistic metrics,
-# visualization, and statistical analysis including t-tests and regression modeling
+# visualization, and statistical analysis including t-tests and regression modeling.
 #########################################################################################
 
 # -------------------------------#
