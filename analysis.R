@@ -2,6 +2,7 @@
 # Local R Script for Analysis of Amazon Fine Food Reviews
 # Title: Lexical Diversity and Sentiment Intensity in Amazon Fine Food Reviews
 # Authors: David Nguyen, Ayushi Mazumder, Charles Martin, Ryan Kuhn
+# Course: LING-460 Textual Analysis with R at UNC-Chapel Hill
 #
 # This script investigates whether negative reviews (1-2 stars) on the Amazon Fine Food 
 # Reviews dataset exhibit:
@@ -10,7 +11,7 @@
 # compared to positive reviews (4-5 stars).
 #
 # The analysis involves data loading, preprocessing, computation of linguistic metrics,
-# visualization, and statistical analysis including t-tests and regression modeling
+# visualization, and statistical analysis including t-tests and regression modeling.
 #########################################################################################
 
 # -------------------------------#
