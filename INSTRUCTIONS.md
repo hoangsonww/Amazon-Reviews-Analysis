@@ -26,7 +26,7 @@ install.packages(c("tidyverse", "tidytext", "sentimentr", "lubridate"))
 
 1. **Download the Dataset**
    - Place the `Reviews.csv` file in the same directory as the `analysis.R` file.
-   - You can download the dataset here: [https://drive.google.com/file/d/1xay-CkkRhbjrAJqQHKCkeXzoMucQTlSB/view?usp=share_link](https://drive.google.com/file/d/1xay-CkkRhbjrAJqQHKCkeXzoMucQTlSB/view?usp=share_link)
+   - You can download the dataset here: [https://www.kaggle.com/datasets/snap/amazon-fine-food-reviews?resource=download](https://www.kaggle.com/datasets/snap/amazon-fine-food-reviews?resource=download).
 
 2. **Open the Script**
    - Open `analysis.R` in RStudio or run it from your R console.
