@@ -22,7 +22,7 @@ _LING-460: Textual Analysis with R at UNC-Chapel Hill, Spring 2025._
 
 Consumer reviews provide rich insights into the evaluative language that people use to express their satisfaction or dissatisfaction. The way consumers articulate their experiences can reveal underlying linguistic patterns, where factors such as lexical diversity and emotional tone contribute to the expression of opinions. Understanding these patterns has implications for marketing, consumer research, and sentiment analysis in natural language processing. Our project addresses the broader question of whether the language used in negative reviews differs fundamentally from that used in positive reviews.
 
-> Dataset: [https://drive.google.com/file/d/1xay-CkkRhbjrAJqQHKCkeXzoMucQTlSB/view?usp=sharing](https://drive.google.com/file/d/1xay-CkkRhbjrAJqQHKCkeXzoMucQTlSB/view?usp=sharing).
+> Dataset: [https://www.kaggle.com/datasets/snap/amazon-fine-food-reviews?resource=download](https://www.kaggle.com/datasets/snap/amazon-fine-food-reviews?resource=download).
 
 ## Research Question
 
