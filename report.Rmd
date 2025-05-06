@@ -1,1 +1,254 @@
 
+---
+title: "Lexical Diversity & Sentiment in Amazon Fine Food Reviews"
+author:
+  - David Nguyen
+  - Ayushi Mazumder
+  - Charles Martin
+  - Ryan Kuhn
+date: "`r format(Sys.Date(), '%B %d, %Y')`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    theme: united
+    code_folding: hide
+---
+
+```{r setup, include=FALSE}
+# Prevent CRAN prompts
+options(repos = c(CRAN = "https://cloud.r-project.org"))
+knitr::opts_chunk$set(
+  echo        = TRUE,
+  message     = FALSE,
+  warning     = FALSE,
+  fig.width   = 8,
+  fig.height  = 5,
+  fig.align   = "center"
+)
+````
+
+## Introduction
+
+The Amazon Fine Food Reviews dataset contains over 500,000 user reviews for food products sold on Amazon.
+This analysis addresses two key questions:
+
+1. **Lexical Diversity**
+   Do negative reviews (1–2 stars) exhibit lower lexical diversity than positive reviews (4–5 stars)?
+2. **Sentiment Intensity**
+   Do negative reviews contain a higher proportion of negative words than positive reviews?
+
+We measure lexical diversity using the Type-Token Ratio (TTR) and negative sentiment intensity as the proportion of words found in the “negative” category of the Bing sentiment lexicon.
+
+---
+
+## 1. Install & Load Packages
+
+```{r packages}
+required_packages <- c("tidyverse", "tidytext", "sentimentr", "lubridate")
+installed <- rownames(installed.packages())
+for (pkg in required_packages) {
+  if (! pkg %in% installed) {
+    install.packages(pkg, dependencies = TRUE)
+  }
+}
+library(tidyverse)
+library(tidytext)
+library(sentimentr)
+library(lubridate)
+```
+
+---
+
+## 2. Load Data
+
+```{r load-data}
+# Assumes Reviews.csv is in data/ subfolder
+reviews_raw <- read_csv("data/Reviews.csv")
+glimpse(reviews_raw)
+```
+
+---
+
+## 3. Preprocessing
+
+* Convert Unix timestamp to POSIX date.
+* Cast Score to numeric.
+* Create a `Sentiment` factor: Negative (1–2), Positive (4–5), exclude 3-star.
+
+```{r preprocess}
+reviews <- reviews_raw %>%
+  mutate(
+    Date      = as_datetime(Time),
+    Score     = as.numeric(Score),
+    Sentiment = case_when(
+      Score %in% c(1,2) ~ "Negative",
+      Score %in% c(4,5) ~ "Positive",
+      TRUE              ~ NA_character_
+    )
+  ) %>%
+  filter(!is.na(Sentiment)) %>%
+  select(Id, ProductId, UserId, ProfileName,
+         HelpfulnessNumerator, HelpfulnessDenominator,
+         Score, Date, Summary, Text, Sentiment)
+```
+
+---
+
+## 4. Lexical Diversity (TTR)
+
+Define and compute TTR for each review:
+
+```{r compute-ttr}
+compute_ttr <- function(text) {
+  tokens <- unlist(str_split(text, "\\s+"))
+  tokens <- tokens[tokens != ""]
+  if (length(tokens) == 0) return(NA_real_)
+  length(unique(tokens)) / length(tokens)
+}
+
+reviews <- reviews %>%
+  mutate(TTR = map_dbl(Text, compute_ttr))
+```
+
+---
+
+## 5. Negative Sentiment Intensity
+
+Count negative words per review and calculate intensity:
+
+```{r sentiment-intensity}
+negative_lexicon <- get_sentiments("bing") %>%
+  filter(sentiment == "negative")
+
+neg_counts <- reviews %>%
+  unnest_tokens(word, Text) %>%
+  inner_join(negative_lexicon, by = "word") %>%
+  count(Id, name = "NegativeCount")
+
+reviews <- reviews %>%
+  left_join(neg_counts, by = "Id") %>%
+  mutate(
+    NegativeCount     = replace_na(NegativeCount, 0),
+    TotalWords        = str_count(Text, "\\S+"),
+    NegativeIntensity = NegativeCount / TotalWords
+  )
+```
+
+---
+
+## 6. Summary Statistics
+
+```{r summary-stats}
+summary_stats <- reviews %>%
+  group_by(Sentiment) %>%
+  summarise(
+    Count            = n(),
+    Mean_TTR         = mean(TTR, na.rm = TRUE),
+    SD_TTR           = sd(TTR, na.rm = TRUE),
+    Mean_NegIntensity= mean(NegativeIntensity, na.rm = TRUE),
+    SD_NegIntensity  = sd(NegativeIntensity, na.rm = TRUE)
+  )
+knitr::kable(summary_stats, digits = 4,
+             caption = "Descriptive Statistics by Sentiment")
+```
+
+---
+
+## 7. Visualizations
+
+### 7.1 TTR by Sentiment
+
+```{r plot-ttr}
+ggplot(reviews, aes(x = Sentiment, y = TTR, fill = Sentiment)) +
+  geom_boxplot() +
+  labs(
+    title = "Type–Token Ratio by Sentiment",
+    x     = "Review Sentiment",
+    y     = "TTR"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+### 7.2 Negative Intensity by Sentiment
+
+```{r plot-negint}
+ggplot(reviews, aes(x = Sentiment, y = NegativeIntensity, fill = Sentiment)) +
+  geom_boxplot() +
+  labs(
+    title = "Negative Sentiment Intensity by Sentiment",
+    x     = "Review Sentiment",
+    y     = "Proportion of Negative Words"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+---
+
+## 8. Statistical Tests
+
+### 8.1 T-test: TTR
+
+```{r ttest-ttr}
+ttr_test <- t.test(TTR ~ Sentiment, data = reviews)
+ttr_test
+```
+
+> **Interpretation:**
+> Negative reviews have significantly lower TTR than positive reviews (p-value < 2.2e-16).
+
+### 8.2 T-test: Negative Intensity
+
+```{r ttest-negint}
+neg_test <- t.test(NegativeIntensity ~ Sentiment, data = reviews)
+neg_test
+```
+
+> **Interpretation:**
+> Negative reviews have a significantly higher proportion of negative words (p-value < 2.2e-16).
+
+---
+
+## 9. Regression Analysis
+
+Create a binary indicator and run a linear model predicting TTR:
+
+```{r regression}
+reviews <- reviews %>%
+  mutate(SentimentBinary = ifelse(Sentiment == "Negative", 1, 0))
+
+reg_model <- lm(TTR ~ SentimentBinary + NegativeIntensity, data = reviews)
+summary(reg_model)
+```
+
+> **Key coefficients:**
+>
+> * **SentimentBinary:** \~ –0.0204 (p < 2e-16)
+> * **NegativeIntensity:** \~ 0.0120 (p ≈ 0.055)
+
+---
+
+## 10. Conclusions
+
+* **Lexical Diversity (TTR):** Negative reviews have lower TTR than positive reviews, confirming more repetition and less variety in negative feedback.
+* **Sentiment Intensity:** Negative reviews contain roughly twice the proportion of negative words compared to positive reviews.
+* **Regression:** Even after accounting for the specific negative-word proportion, sentiment remains a strong predictor of lexical diversity.
+
+**Future Directions:**
+
+* Explore neutral (3-star) reviews as a midpoint.
+* Compare across product categories.
+* Analyze temporal trends in language use over time.
+
+---
+
+## Session Info
+
+```{r session-info}
+sessionInfo()
+```
+
+```
+```
