@@ -249,5 +249,3 @@ summary(reg_model)
 sessionInfo()
 ```
 
-```
-```
